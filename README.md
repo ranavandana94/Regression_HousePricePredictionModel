@@ -16,21 +16,21 @@ The target variable is the **Price** of the house.
 
 ## Folder Structure
 
-```house-price-prediction/
-```│
-```├── data/
-```│ └── house_data.csv # CSV file with house data
-```│
-```├── src/
-```│ ├── __init__.py # marks src as a package
-```│ ├── preprocess.py # data loading, splitting, scaling
-```│ ├── train.py # model training
-```├── evaluate.py # RMSE evaluation
-```│ ├── predict.py # predict new house prices
-```│ └── main.py # pipeline execution
-```│
-```├── requirements.txt # Python dependencies
-```└── README.md # project instructions
+house-price-prediction/
+│
+├── data/
+│ └── house_data.csv # CSV file with house data
+│
+├── src/
+│ ├── __init__.py # marks src as a package
+│ ├── preprocess.py # data loading, splitting, scaling
+│ ├── train.py # model training
+├── evaluate.py # RMSE evaluation
+│ ├── predict.py # predict new house prices
+│ └── main.py # pipeline execution
+│
+├── requirements.txt # Python dependencies
+└── README.md # project instructions
 
 
 ---
