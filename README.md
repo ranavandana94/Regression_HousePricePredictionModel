@@ -5,7 +5,10 @@ The model uses the following features:
 
 - `SqFt` — Size of the house in square feet  
 - `Bedrooms` — Number of bedrooms  
-- `Bathrooms` — Number of bathrooms  
+- `Bathrooms` — Number of bathrooms 
+- `Offers` - Offers 
+- `Brick` 
+- `Neighborhood` 
 
 The target variable is the **Price** of the house.
 
@@ -74,9 +77,10 @@ RMSE of the model
 Predicted price for an example house (2000 sqft, 3 bedrooms, 2 bathrooms)
 
 Example Output
-X_train shape: (6, 3)
+X_train shape: (6, 7)
 y_train shape: (6,)
-X_test shape: (3, 3)
+X_test shape: (3, 7)
 y_test shape: (3,)
-RMSE: 25946.3
-Predicted price for 2000 sqft, 3 bed, 2 bath: 130500.0
+RMSE: 109054.00038513058
+Predicted price for 2000 sqft, 3 bed, 2 bath 1 Offers 0 Brick 0 Neighborhood_1 1 Neighborhood_2: 363375.00000000047
+
