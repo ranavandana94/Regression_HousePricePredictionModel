@@ -1,19 +1,23 @@
 import pandas as pd
+import numpy as np
 
 def predict_new(model, scaler, feature_dict, feature_cols):
-    """
-    feature_dict: dict with keys = feature names
-    feature_cols: list of all columns used for training (including one-hot)
-    """
-    # Create DataFrame with zeros for all features
-    features = pd.DataFrame(0, index=[0], columns=feature_cols)
+    # Create DataFrame with correct columns
+    df = pd.DataFrame([feature_dict])
 
-    # Fill in values from feature_dict
-    for key, value in feature_dict.items():
-        if key in features.columns:
-            features.at[0, key] = value
+    # Ensure same order as training
+    df = df.reindex(columns=feature_cols, fill_value=0)
 
-    # Scale and predict
-    features_scaled = scaler.transform(features)
-    price = model.predict(features_scaled)
-    return price[0]
+    # Scale
+    df_scaled = scaler.transform(df)
+
+    # Convert back to DataFrame (this fixes the warning)
+    df_scaled = pd.DataFrame(df_scaled, columns=feature_cols)
+
+    # Predict
+    pred_log = model.predict(df_scaled)
+
+    # Convert from log to actual price
+    pred = np.expm1(pred_log)
+
+    return pred[0]
