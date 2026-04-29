@@ -126,6 +126,15 @@ And returns:
 
 ---
 
+## 🖥️ App Screenshot
+
+![App Screenshot](images/app.png)
+
+
+---
+
+
+
 ## ⚠️ Limitations
 
 * UI uses limited input features (model trained on 200+ features)
