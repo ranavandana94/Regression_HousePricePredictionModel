@@ -7,7 +7,7 @@ import os
 from src.preprocess import load_data
 
 # -----------------------------
-# PATH SETUP (robust fix)
+# PATH SETUP 
 # -----------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -30,7 +30,7 @@ feature_cols = load_artifact("models/feature_cols.pkl")
 scaler = load_artifact("models/scaler.pkl", required=False)  # optional
 
 # -----------------------------
-# LOAD DATA (optional, for structure/debug)
+# LOAD DATA
 # -----------------------------
 df = load_data(os.path.join(BASE_DIR, "data/train.csv"))
 
@@ -63,14 +63,10 @@ input_dict = {
 }
 
 input_df = pd.DataFrame([input_dict])
-
-# -----------------------------
-# ALIGN WITH TRAINING FEATURES
-# -----------------------------
 input_df = input_df.reindex(columns=feature_cols, fill_value=0)
 
 # -----------------------------
-# APPLY SCALING (only if exists)
+# SCALING 
 # -----------------------------
 if scaler is not None:
     input_processed = scaler.transform(input_df)
@@ -88,7 +84,7 @@ if st.button("Predict Price"):
     st.success(f"Estimated House Price: ${pred_price[0]:,.2f}")
 
 # -----------------------------
-# DEBUG (optional - remove later)
+# DEBUG 
 # -----------------------------
 with st.expander("Debug Info"):
     st.write("Working directory:", os.getcwd())

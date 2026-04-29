@@ -37,24 +37,22 @@ def build_pipeline(X):
     ])
 
     categorical_pipeline = Pipeline([
-        ("onehot", pd.get_dummies)  # will handle later manually
+        ("onehot", pd.get_dummies)  
     ])
 
-    # NOTE: sklearn ColumnTransformer doesn’t directly accept get_dummies,
-    # so we’ll handle encoding separately before pipeline
 
     return numeric_features, categorical_features, numeric_pipeline
 
 
 def prepare_data(df):
-    # Handle missing values
+    
     df = df.fillna(0)
 
     # Target
     y = np.log1p(df["SalePrice"])
     X = df.drop("SalePrice", axis=1)
 
-    # One-hot encode ALL categorical columns
+    
     X = pd.get_dummies(X, drop_first=True)
 
     # Split
@@ -62,7 +60,7 @@ def prepare_data(df):
         X, y, test_size=0.2, random_state=42
     )
 
-    # Scale numeric features
+    
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)

@@ -3,7 +3,7 @@ from sklearn.metrics import mean_squared_error
 
 
 def evaluate_model(y_test, y_pred):
-    # Convert back to real prices
+    
     y_actual = np.expm1(y_test)
     y_pred_actual = np.expm1(y_pred)
 

@@ -11,9 +11,6 @@ df = load_data("data/train.csv")
 # Prepare data
 X_train, X_test, y_train, y_test, scaler, feature_cols = prepare_data(df)
 
-
-
-
 print("X_train shape:", X_train.shape)
 print("y_train shape:", y_train.shape)
 print("X_test shape:", X_test.shape)
@@ -25,7 +22,7 @@ model = train_model(X_train, y_train, X_test, y_test, scaler, feature_cols)
 # Final evaluation on best model
 y_pred = model.predict(X_test)
 
-# Convert back to actual prices
+
 y_actual = np.expm1(y_test)
 y_pred_actual = np.expm1(y_pred)
 

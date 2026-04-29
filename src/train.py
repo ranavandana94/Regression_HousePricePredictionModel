@@ -28,7 +28,7 @@ def train_model(X_train, y_train, X_test, y_test, scaler, feature_cols):
             best_score = rmse
             best_model = model
 
-    # Save best model
+    
     
     joblib.dump(best_model, "models/best_model.pkl")
     joblib.dump(scaler, "models/scaler.pkl")
