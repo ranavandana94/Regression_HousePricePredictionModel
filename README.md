@@ -1,87 +1,155 @@
-# House Price Prediction
+# 🏠 House Price Prediction (Regression ML App)
 
-This is a **simple machine learning project** that predicts house prices using **Linear Regression**.  
-The model uses the following features:
-
-- `SqFt` — Size of the house in square feet  
-- `Bedrooms` — Number of bedrooms  
-- `Bathrooms` — Number of bathrooms 
-- `Offers` - Offers 
-- `Brick` 
-- `Neighborhood` 
-
-The target variable is the **Price** of the house.
+A machine learning project that predicts house prices using regression models and provides an interactive Streamlit web app for real-time predictions.
 
 ---
 
-## Folder Structure
+## 🚀 Quick Demo
 
-house-price-prediction/
-│
-├── data/
-│ └── house_data.csv # CSV file with house data
+Run locally in under 60 seconds:
+
+```bash
+git clone https://github.com/ranavandana94/Regression_HousePricePredictionModel.git
+cd Regression_HousePricePredictionModel
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+---
+
+## 📌 Problem Statement
+
+Accurately estimating house prices is critical for buyers, sellers, and real estate professionals.
+This project builds a regression model using housing features to predict sale prices.
+
+---
+
+## 🧠 Solution Overview
+
+This project follows a complete ML pipeline:
+
+1. **Data Preprocessing**
+
+   * Handle missing values
+   * Feature engineering
+   * One-hot encoding for categorical features
+
+2. **Feature Scaling**
+
+   * StandardScaler applied to numeric features
+
+3. **Model Training**
+
+   * Linear Regression
+   * Random Forest Regressor
+   * Best model selected based on RMSE
+
+4. **Evaluation**
+
+   * Metric: Root Mean Squared Error (RMSE)
+
+5. **Deployment**
+
+   * Streamlit app for user interaction
+
+---
+
+## 📊 Dataset
+
+* Source: Kaggle House Prices Dataset
+* Target Variable: `SalePrice`
+* Features: 200+ after encoding
+
+---
+
+## ⚙️ Tech Stack
+
+* Python
+* Pandas, NumPy
+* Scikit-learn
+* Streamlit
+* Joblib
+
+---
+
+## 📁 Project Structure
+
+```
+Regression_HousePricePredictionModel/
 │
 ├── src/
-│ ├── __init__.py # marks src as a package
-│ ├── preprocess.py # data loading, splitting, scaling
-│ ├── train.py # model training
-├── evaluate.py # RMSE evaluation
-│ ├── predict.py # predict new house prices
-│ └── main.py # pipeline execution
+│   ├── preprocess.py      # Data cleaning & feature engineering
+│   ├── train.py           # Model training & selection
+│   ├── evaluate.py        # Evaluation metrics
+│   ├── main.py            # Pipeline execution
 │
-├── requirements.txt # Python dependencies
-└── README.md # project instructions
-
-
----
-
-## Features
-
-- Modular Python code:
-  - `preprocess.py` — data preprocessing, train/test split, scaling  
-  - `train.py` — Linear Regression model training  
-  - `evaluate.py` — calculate RMSE  
-  - `predict.py` — predict price for new houses  
-  - `main.py` — runs the full pipeline  
-- Ready to run with a **small CSV dataset**.  
-- Outputs **RMSE** and predicts price for new houses.
+├── models/
+│   ├── best_model.pkl
+│   ├── scaler.pkl
+│   ├── feature_cols.pkl
+│
+├── data/
+│   └── train.csv
+│
+├── app.py                 # Streamlit application
+├── requirements.txt
+└── README.md
+```
 
 ---
 
-## Installation & Setup
+## 📈 Model Performance
 
-1. **Clone the repository**
-```bash
-git clone <your-repo-url>
-cd house-price-prediction
+| Model             | RMSE    |
+| ----------------- | ------- |
+| Linear Regression | ~25,535 |
+| Random Forest     | ~29,390 |
 
+👉 **Best Model:** Linear Regression
 
-2. **Create a virtual environment**
-python -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate      # Windows
+---
 
+## 🖥️ Streamlit App
 
-3. Install dependencies
-pip install -r requirements.txt
+The app allows users to input:
 
+* Overall Quality
+* Living Area
+* Garage Capacity
+* Basement Area
+* Bathrooms
+* Year Built
 
-## How to Run
-python src/main.py
+And returns:
 
-Output includes:
+👉 **Estimated House Price**
 
-Shapes of train/test data
+---
 
-RMSE of the model
+## ⚠️ Limitations
 
-Predicted price for an example house (2000 sqft, 3 bedrooms, 2 bathrooms)
+* UI uses limited input features (model trained on 200+ features)
+* Missing advanced models like XGBoost
+* No hyperparameter tuning yet
 
-Example Output
-X_train shape: (6, 7)
-y_train shape: (6,)
-X_test shape: (3, 7)
-y_test shape: (3,)
-RMSE: 109054.00038513058
-Predicted price for 2000 sqft, 3 bed, 2 bath 1 Offers 0 Brick 0 Neighborhood_1 1 Neighborhood_2: 363375.00000000047
+---
 
+## 🚀 Future Improvements
+
+* Convert to **sklearn Pipeline (single model file)**
+* Add more input fields in UI for better accuracy
+* Try advanced models (XGBoost, LightGBM)
+* Deploy on Streamlit Cloud
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome. For major changes, please open an issue first.
+
+---
+
+## 👤 Author
+
+**Vandana Rana**
+GitHub: https://github.com/ranavandana94
