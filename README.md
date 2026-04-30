@@ -42,6 +42,7 @@ This project follows a complete ML pipeline:
 
    * Linear Regression
    * Random Forest Regressor
+   * XGBoost Regressor (with hyperparameter tuning)
    * Best model selected based on RMSE
 
 4. **Evaluation**
@@ -68,6 +69,7 @@ This project follows a complete ML pipeline:
 * Pandas, NumPy
 * Scikit-learn
 * Streamlit
+* XGBoost
 * Joblib
 
 ---
@@ -104,8 +106,27 @@ Regression_HousePricePredictionModel/
 | ----------------- | ------- |
 | Linear Regression | ~25,535 |
 | Random Forest     | ~29,390 |
+| XGBoost (tuned)   | ~25,948 | 
 
 👉 **Best Model:** Linear Regression
+
+
+---
+
+⚙️ XGBoost Tuning Details
+
+Best parameters found:
+
+{
+  'subsample': 0.7,
+  'reg_lambda': 1,
+  'reg_alpha': 0.1,
+  'n_estimators': 1500,
+  'max_depth': 4,
+  'learning_rate': 0.03,
+  'gamma': 0,
+  'colsample_bytree': 0.8
+}
 
 ---
 
@@ -138,8 +159,8 @@ And returns:
 ## ⚠️ Limitations
 
 * UI uses limited input features (model trained on 200+ features)
-* Missing advanced models like XGBoost
-* No hyperparameter tuning yet
+* Missing inputs default to zero → may affect prediction accuracy
+* Pipeline not fully encapsulated (manual preprocessing + scaling)
 
 ---
 
@@ -147,7 +168,7 @@ And returns:
 
 * Convert to **sklearn Pipeline (single model file)**
 * Add more input fields in UI for better accuracy
-* Try advanced models (XGBoost, LightGBM)
+* Improve model performance with feature selection
 * Deploy on Streamlit Cloud
 
 ---
