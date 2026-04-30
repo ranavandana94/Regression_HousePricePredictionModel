@@ -51,6 +51,10 @@ def prepare_data(df):
     # Target
     y = np.log1p(df["SalePrice"])
     X = df.drop("SalePrice", axis=1)
+    X["TotalSF"] = X["TotalBsmtSF"] + X["GrLivArea"]
+    X["HouseAge"] = 2025 - X["YearBuilt"]
+    X["TotalBathrooms"] = X["FullBath"] + (0.5 * X.get("HalfBath", 0))
+    X["GarageScore"] = X["GarageCars"] * X.get("GarageArea", 0)
 
     
     X = pd.get_dummies(X, drop_first=True)
@@ -60,10 +64,21 @@ def prepare_data(df):
         X, y, test_size=0.2, random_state=42
     )
 
-    
+    # Keep raw versions (for XGBoost)
+    X_train_raw = X_train.copy()
+    X_test_raw = X_test.copy()
     scaler = StandardScaler()
-    X_train = scaler.fit_transform(X_train)
-    X_test = scaler.transform(X_test)
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
     feature_cols = X.columns.tolist()
 
-    return X_train, X_test, y_train, y_test, scaler, feature_cols 
+    return (
+    X_train_scaled,
+    X_test_scaled,
+    X_train_raw,
+    X_test_raw,
+    y_train,
+    y_test,
+    scaler,
+    feature_cols
+)

@@ -68,7 +68,8 @@ input_df = input_df.reindex(columns=feature_cols, fill_value=0)
 # -----------------------------
 # SCALING 
 # -----------------------------
-if scaler is not None:
+model_name = type(model).__name__
+if model_name == "LinearRegression":
     input_processed = scaler.transform(input_df)
     input_processed = pd.DataFrame(input_processed, columns=feature_cols)
 else:
